@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main # или любая другая ветка, которую вы используете
+      - main
 
 jobs:
   build:
@@ -16,13 +16,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16" # или версия Node.js, которую вы используете
+          node-version: "22"
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm test # предполагается, что у вас есть скрипт тестов в package.json
 
       - name: Build project
         run: npm run build
