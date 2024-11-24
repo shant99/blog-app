@@ -12,7 +12,7 @@ export default function Home() {
           height={38}
           priority
         />
-        Abrakatabra 88888889999 xxxxxxx
+        Abrakatabra 0000000
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
     </div>
