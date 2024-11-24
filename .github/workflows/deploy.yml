@@ -1,20 +1,28 @@
-name: Deploy CI
+name: CI
+
 on:
   push:
-    branches: [master]
-  pull_request:
-    types: [opened, synchronize, reopened]
+    branches:
+      - main # или любая другая ветка, которую вы используете
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Deploy to Vercel Action
-        uses: BetaHuhn/deploy-to-vercel-action@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          node-version: "16" # или версия Node.js, которую вы используете
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test # предполагается, что у вас есть скрипт тестов в package.json
+
+      - name: Build project
+        run: npm run build
