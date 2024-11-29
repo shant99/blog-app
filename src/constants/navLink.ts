@@ -1,7 +1,4 @@
-type TranslationFunction = (
-  key: string,
-  options?: Record<string, any>
-) => string;
+type TranslationFunction = (key: string) => string;
 
 export const getLinks = (t: TranslationFunction) => [
   { label: t("navLinks.matches"), href: "/matches" },
