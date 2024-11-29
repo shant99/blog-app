@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import Providers from "@/components/Providers";
-import "./globals.css";
-import { geistSans, geistMono } from "@/assets/fonts";
-import clsx from "clsx";
+import TopNav from "@/components/shared/NavBar";
+import LanguageSwitcher from "@/components/shared/LanguageSwitcher";
+import { getLocale } from "next-intl/server";
+import "../styles/globals.css";
+import { bodyClass } from "./helpers";
+import { IRootLayout } from "@/types/global";
 
-const bodyClass = clsx(geistSans.variable, geistMono.variable);
+export default async function RootLayout({ children }: IRootLayout) {
+  const locale = await getLocale();
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={bodyClass}>
         <Providers>
-          <div className="wrapper-base">
-            <main>{children}</main>
-            <footer>Footer</footer>
-          </div>
+          <TopNav />
+          <main>{children}</main>
+          <footer>
+            <LanguageSwitcher />
+          </footer>
         </Providers>
       </body>
     </html>
@@ -28,4 +28,7 @@ export default function RootLayout({
 export const metadata: Metadata = {
   title: "Blog",
   description: "This is Blog app",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
