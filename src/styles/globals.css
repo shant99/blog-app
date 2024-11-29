@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./variables.css";
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  @apply antialiased
+  flex
+  flex-col
+  min-h-screen;
+}
+
+body main {
+  @apply row-start-2 
+  flex 
+  flex-col 
+  items-center 
+  gap-8
+  sm:items-start 
+  min-h-screen
+  justify-center
+  w-full 
+  bg-gradient-to-r
+ from-gray-800
+ via-blue-900
+ to-black;
+}
+
+body footer {
+  @apply row-start-3;
+  @apply flex;
+  @apply flex-wrap;
+  @apply items-center;
+  @apply justify-center;
+  @apply gap-6;
+  @apply text-center;
+  @apply p-4;
+  @apply text-white;
+  @apply bg-gradient-to-r;
+  @apply from-gray-800;
+  @apply via-blue-900;
+  @apply to-black;
+}
+
+@layer components {
+  .vertical-center {
+    height: calc(100vh - 64px);
+  }
+
+  .page-size-box {
+    @apply cursor-pointer border-2 hover:bg-gray-100 
+        flex items-center justify-center rounded-lg 
+        shadow-sm min-w-[36px] w-9 h-9 text-sm;
+  }
+}

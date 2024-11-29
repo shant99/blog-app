@@ -1,0 +1,12 @@
+{
+    "HomePage": {
+        "title": "Privet mir"
+    },
+    "navLinks": {
+        "matches": "Совпадения",
+        "lists": "Списки",
+        "messages": "Сообщения",
+        "login": "Войти",
+        "register": "Регистрация"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "HomePage": {
+        "title": "Hello world!"
+    },
+    "navLinks": {
+        "matches": "Matches",
+        "lists": "Lists",
+        "messages": "Messages",
+        "login": "Login",
+        "register": "Register"
+    }
+}
