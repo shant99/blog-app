@@ -8,5 +8,14 @@
         "messages": "Messages",
         "login": "Login",
         "register": "Register"
+    },
+    "other": {
+        "welcome_to_blog": "Welcome to Blog!"
+    },
+    "form": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "select_lang": "Select Language"
     }
 }

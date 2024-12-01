@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --neon-color: #0ff;
+  --neon-color: #00f6ff;
   --hover-neon-color: #ff007f;
+  --text-color-dark: #171717;
 }

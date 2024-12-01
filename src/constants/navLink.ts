@@ -1,7 +1,7 @@
 type TranslationFunction = (key: string) => string;
 
 export const getLinks = (t: TranslationFunction) => [
-  { label: t("navLinks.matches"), href: "/matches" },
+  { label: t("navLinks.matches"), href: "/members" },
   { label: t("navLinks.lists"), href: "/lists" },
   { label: t("navLinks.messages"), href: "/messages" },
 ];
