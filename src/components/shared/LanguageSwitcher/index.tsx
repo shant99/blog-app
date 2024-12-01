@@ -3,9 +3,11 @@ import { locales } from "@/constants/locales";
 import { getLocaleCookie, setLocaleCookie } from "@/services/locale";
 import { Select, SelectItem } from "@nextui-org/react";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 import { useEffect, useState, useTransition } from "react";
 
 export default function LanguageSwitcher() {
+  const t = useTranslations();
   const [value, setValue] = useState<string>("en");
   const [isMounted, setIsMounted] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -37,7 +39,7 @@ export default function LanguageSwitcher() {
   return (
     <Select
       name="language"
-      label="Select language"
+      label={t("form.select_lang")}
       labelPlacement="inside"
       onChange={handleLocaleChange}
       value={value}

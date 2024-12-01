@@ -56,3 +56,11 @@ body footer {
         shadow-sm min-w-[36px] w-9 h-9 text-sm;
   }
 }
+
+.box-shadow-neon {
+  position: relative;
+  @apply shadow-lg;
+  border: 1px solid rgb(41, 41, 225);
+  box-shadow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color),
+    0 0 30px var(--neon-color);
+}
