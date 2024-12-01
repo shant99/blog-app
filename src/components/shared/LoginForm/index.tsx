@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GiPadlock } from "react-icons/gi";
 import { useForm } from "react-hook-form";
 import { loginSchema, TLoginSchema } from "@/lib/schemas/LoginSchema";
@@ -11,6 +11,12 @@ import { useTranslations } from "next-intl";
 
 export default function LoginForm() {
   const t = useTranslations();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -21,6 +27,10 @@ export default function LoginForm() {
   });
 
   const onSubmit = (data: TLoginSchema) => console.log(data);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <Card className="box-shadow-neon card">

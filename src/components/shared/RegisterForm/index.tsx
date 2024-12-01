@@ -4,13 +4,19 @@ import { TRegisterSchema, registerSchema } from "@/lib/schemas/RegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardHeader, CardBody, Button, Input } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { GiPadlock } from "react-icons/gi";
 import "./styles.css";
 
 export default function RegisterForm() {
   const t = useTranslations();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -23,6 +29,10 @@ export default function RegisterForm() {
   const onSubmit = (data: TRegisterSchema) => {
     console.log(data);
   };
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <Card className="box-shadow-neon card">
