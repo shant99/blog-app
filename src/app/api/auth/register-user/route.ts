@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     );
   } catch (error) {
     return NextResponse.json(
-      { error: "Something went wrong during registration" },
+      { error: "Something went wrong during registration", message: error },
       { status: 500 }
     );
   }
