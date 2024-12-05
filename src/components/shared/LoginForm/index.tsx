@@ -8,9 +8,13 @@ import { loginSchema, TLoginSchema } from "@/lib/schemas/LoginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "./styles.css";
 import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
+import signInWithCred from "@/actions/authActions/signInWithCred";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const t = useTranslations();
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -20,13 +24,23 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { isValid, errors },
+    formState: { isValid, errors, isSubmitting },
   } = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
     mode: "onTouched",
   });
 
-  const onSubmit = (data: TLoginSchema) => console.log(data);
+  const onSubmit = async (data: TLoginSchema) => {
+    const response = await signInWithCred(data, t);
+
+    if (response.status === "error") {
+      toast.error(response.error);
+    }
+
+    if (response.status === "success") {
+      router.push("/welcome");
+    }
+  };
 
   if (!isMounted) {
     return null;
@@ -69,6 +83,7 @@ export default function LoginForm() {
               color="primary"
               type="submit"
               isDisabled={!isValid}
+              isLoading={isSubmitting}
             >
               {t("navLinks.login")}
             </Button>

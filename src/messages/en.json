@@ -7,7 +7,8 @@
         "lists": "Lists",
         "messages": "Messages",
         "login": "Login",
-        "register": "Register"
+        "register": "Register",
+        "logout": "Log out"
     },
     "other": {
         "welcome_to_blog": "Welcome to Blog!"
@@ -17,5 +18,16 @@
         "email": "Email",
         "password": "Password",
         "select_lang": "Select Language"
+    },
+    "user_profile": {
+        "signed_in": "Signed in as",
+        "edit_profile": "Edit profile"
+    },
+    "errors": {
+        "userAlreadyExists": "A user with this email already exists.",
+        "unknownError": "Unknown error occurred",
+        "invalidCredentials": "Invalid credentials",
+        "somethingWentWrong": "Something went wrong",
+        "credentialsSigninRetry": "Incorrect email or password. Please try again."
     }
 }

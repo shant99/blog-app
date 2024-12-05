@@ -1,16 +1,20 @@
 "use client";
 
 import { TRegisterSchema, registerSchema } from "@/lib/schemas/RegisterSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardHeader, CardBody, Button, Input } from "@nextui-org/react";
-import { useTranslations } from "next-intl";
+import registerWithCred from "@/actions/authActions/registerWithCred";
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { GiPadlock } from "react-icons/gi";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import "./styles.css";
 
 export default function RegisterForm() {
   const t = useTranslations();
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -26,8 +30,16 @@ export default function RegisterForm() {
     mode: "onTouched",
   });
 
-  const onSubmit = (data: TRegisterSchema) => {
-    console.log(data);
+  const onSubmit = async (data: TRegisterSchema) => {
+    const response = await registerWithCred(data, t);
+
+    if (response.status === "error") {
+      toast.error(response.error);
+    }
+
+    if (response.status === "success") {
+      router.push("/welcome");
+    }
   };
 
   if (!isMounted) {
@@ -75,10 +87,10 @@ export default function RegisterForm() {
             />
             <Button
               isLoading={isSubmitting}
-              isDisabled={!isValid}
-              fullWidth
-              color="default"
+              className="w-1/3"
+              color="primary"
               type="submit"
+              isDisabled={!isValid}
             >
               {t("navLinks.register")}
             </Button>
