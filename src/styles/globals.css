@@ -14,12 +14,10 @@ body {
 }
 
 body main {
-  @apply row-start-2 
-  flex 
+  @apply flex 
   flex-col 
   items-center 
   gap-8
-  sm:items-start 
   min-h-screen
   justify-center
   w-full 

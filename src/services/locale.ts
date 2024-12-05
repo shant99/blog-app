@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 
 // const isProduction = process.env.NODE_ENV === "production";
-const COOKIE_NAME = "NEXT_LOCALE";
+const COOKIE_NAME = process.env.NEXT_LOCALE || "NEXT_LOCALE";
 
 export async function getLocaleCookie() {
   const cookieStore = await cookies();

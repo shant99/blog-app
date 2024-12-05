@@ -7,7 +7,8 @@
         "lists": "Списки",
         "messages": "Сообщения",
         "login": "Войти",
-        "register": "Регистрация"
+        "register": "Регистрация",
+        "logout": "Выйти"
     },
     "other": {
         "welcome_to_blog": "Добро пожаловать в блог!"
@@ -17,5 +18,16 @@
         "email": "Электронная почта",
         "password": "Пароль",
         "select_lang": "Выберите язык"
+    },
+    "user_profile": {
+        "signed_in": "Вход выполнен как",
+        "edit_profile": "Редактировать профиль"
+    },
+    "errors": {
+        "userAlreadyExists": "Пользователь с таким email уже существует.",
+        "unknownError": "Произошла неизвестная ошибка",
+        "invalidCredentials": "Неверные учетные данные",
+        "somethingWentWrong": "Что-то пошло не так",
+        "credentialsSigninRetry": "Неправильный email или пароль. Пожалуйста, попробуйте еще раз."
     }
 }
