@@ -2,6 +2,7 @@
 
 import { TRegisterSchema, registerSchema } from "@/lib/schemas/RegisterSchema";
 import { Card, CardHeader, CardBody, Button, Input } from "@nextui-org/react";
+import AnimatedComponent from "@/components/animations/AnimatedComponent";
 import registerWithCred from "@/actions/authActions/registerWithCred";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
@@ -12,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "./styles.css";
 
-export default function RegisterForm() {
+function RegisterForm() {
   const t = useTranslations();
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
@@ -28,8 +29,13 @@ export default function RegisterForm() {
   } = useForm<TRegisterSchema>({
     resolver: zodResolver(registerSchema),
     mode: "onTouched",
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
   });
-
+  console.log(isValid, "isValid");
   const onSubmit = async (data: TRegisterSchema) => {
     const response = await registerWithCred(data, t);
 
@@ -61,7 +67,6 @@ export default function RegisterForm() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <Input
-              defaultValue=""
               label={t("form.name")}
               variant="bordered"
               {...register("name")}
@@ -69,7 +74,6 @@ export default function RegisterForm() {
               errorMessage={errors.name?.message}
             />
             <Input
-              defaultValue=""
               label={t("form.email")}
               variant="bordered"
               {...register("email")}
@@ -77,7 +81,6 @@ export default function RegisterForm() {
               errorMessage={errors.email?.message}
             />
             <Input
-              defaultValue=""
               label={t("form.password")}
               variant="bordered"
               type="password"
@@ -100,3 +103,5 @@ export default function RegisterForm() {
     </Card>
   );
 }
+
+export default RegisterForm;

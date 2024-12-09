@@ -1,7 +1,7 @@
 import { TranslationFunction } from "@/types/global";
 
 export const getLinks = (t: TranslationFunction) => [
-  { label: t("navLinks.matches"), href: "/members" },
+  { label: t("navLinks.members"), href: "/members" },
   { label: t("navLinks.lists"), href: "/lists" },
   { label: t("navLinks.messages"), href: "/messages" },
 ];

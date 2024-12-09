@@ -3,14 +3,45 @@
 @tailwind utilities;
 @import "./variables.css";
 
+* {
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 0, 0.852);
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg-dark);
+}
+
 body {
-  color: var(--foreground);
+  color: var(--white);
   background: var(--background);
+  letter-spacing: 0.2rem;
   font-family: Arial, Helvetica, sans-serif;
   @apply antialiased
   flex
   flex-col
   min-h-screen;
+  overflow-x: hidden;
+}
+
+body .header {
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--bg-dark),
+    var(--bg-gray),
+    var(--bg-dark)
+  );
 }
 
 body main {
@@ -22,25 +53,23 @@ body main {
   justify-center
   w-full 
   bg-gradient-to-r
- from-gray-800
- via-blue-900
- to-black;
+  from-[var(--bg-dark)] via-[var(--bg-gray)]
+  to-[var(--bg-dark)];
 }
 
 body footer {
-  @apply row-start-3;
-  @apply flex;
-  @apply flex-wrap;
-  @apply items-center;
-  @apply justify-center;
-  @apply gap-6;
-  @apply text-center;
-  @apply p-4;
-  @apply text-white;
-  @apply bg-gradient-to-r;
-  @apply from-gray-800;
-  @apply via-blue-900;
-  @apply to-black;
+  @apply row-start-3
+  flex
+  flex-wrap
+  items-center
+  justify-center
+  gap-6
+  text-center
+  p-4
+  text-[var(--white)]
+  bg-gradient-to-r
+  from-[var(--bg-dark)] via-[var(--bg-gray)]
+  to-[var(--bg-dark)];
 }
 
 @layer components {
@@ -56,9 +85,15 @@ body footer {
 }
 
 .box-shadow-neon {
-  position: relative;
   @apply shadow-lg;
-  border: 1px solid rgb(41, 41, 225);
+  position: relative;
+  border: 1px solid var(--section-border);
   box-shadow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color),
     0 0 30px var(--neon-color);
+}
+
+.select-label label {
+  color: var(--gray);
+  white-space: nowrap;
+  font-size: 0.7rem;
 }

@@ -6,11 +6,12 @@ import { GiPadlock } from "react-icons/gi";
 import { useForm } from "react-hook-form";
 import { loginSchema, TLoginSchema } from "@/lib/schemas/LoginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "./styles.css";
 import { useTranslations } from "next-intl";
 import { toast } from "react-toastify";
 import signInWithCred from "@/actions/authActions/signInWithCred";
 import { useRouter } from "next/navigation";
+import AnimatedComponent from "@/components/animations/AnimatedComponent";
+import "./styles.css";
 
 export default function LoginForm() {
   const t = useTranslations();

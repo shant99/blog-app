@@ -1,0 +1,8 @@
+.rubic-cubic__skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 550px;
+  height: 550px;
+  background: transparent;
+}

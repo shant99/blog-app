@@ -3,7 +3,7 @@
         "title": "Hello world!"
     },
     "navLinks": {
-        "matches": "Matches",
+        "members": "Members",
         "lists": "Lists",
         "messages": "Messages",
         "login": "Login",
