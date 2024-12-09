@@ -1,6 +1,6 @@
 import AnimatedBorderCard from "@/components/animations/AnimatedBorderCard";
 import StaggeredParts from "@/components/animations/StaggeredParts";
-import { useId, useState } from "react";
+import { useState } from "react";
 import "./styles.css";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
@@ -64,7 +64,6 @@ export default function ChoosenPartsSection() {
         }}
       >
         {textParts.map((text: string, index: number) => {
-          const id = useId();
           const isCurrent = selectedPart === index;
           return (
             <div
@@ -73,7 +72,7 @@ export default function ChoosenPartsSection() {
                 isCurrent ? "current-part" : ""
               )}
               onClick={() => setSelectedPart(index)}
-              key={id}
+              key={`index-${index}`}
               style={{ borderRadius: "15px", border: "1px solid transparent" }}
             >
               <AnimatedBorderCard

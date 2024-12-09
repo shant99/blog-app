@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { StaggeredTextProps } from "../types";
 import getPartsFromDelimiter from "@/utils/delimiter/getPartsFromDelimiter";
@@ -39,14 +39,13 @@ const StaggeredText: React.FC<StaggeredTextProps> = ({
       animate={controls}
       variants={getVariantsConfig(speed)}
     >
-      {textParts.map((part) => {
-        const id = useId();
+      {textParts.map((part, index) => {
         const text = part.replaceAll("&nbsp;", "");
         const displayStyle = part.includes("&nbsp;") ? "block" : "inline-block";
 
         return (
           <motion.p
-            key={id}
+            key={`index-${index}`}
             variants={variantsItemConfig}
             style={{
               display: displayStyle,

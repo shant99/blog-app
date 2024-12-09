@@ -5,18 +5,18 @@ export function randomInRange(min: number, max: number) {
 }
 
 export const handleRegistered = () => {
-  let duration = 15 * 1000;
-  let animationEnd = Date.now() + duration;
-  let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+  const duration = 15 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-  let interval = setInterval(function () {
-    let timeLeft = animationEnd - Date.now();
+  const interval = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
 
     if (timeLeft <= 0) {
       return clearInterval(interval);
     }
 
-    let particleCount = 50 * (timeLeft / duration);
+    const particleCount = 50 * (timeLeft / duration);
     // since particles fall down, start a bit higher than random
     confetti({
       ...defaults,

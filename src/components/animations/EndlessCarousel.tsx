@@ -1,8 +1,11 @@
 import "./styles.css";
 import React from "react";
 import clsx from "clsx";
+import { EndlessCarouselProps } from "./types";
 
-export default function EndlessCarousel({ reverse = true }: any) {
+export default function EndlessCarousel({
+  reverse = true,
+}: EndlessCarouselProps) {
   const arr = [1, 2, 3, 4, 5];
 
   return (
@@ -17,7 +20,7 @@ export default function EndlessCarousel({ reverse = true }: any) {
       }
     >
       <div className="list">
-        {arr.map((item: any, index: any) => {
+        {arr.map((item: number, index: number) => {
           return (
             <div
               className="item"

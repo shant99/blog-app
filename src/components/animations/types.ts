@@ -1,11 +1,18 @@
 import { MotionProps, Variant } from "motion/react";
-import { CSSProperties, ForwardRefExoticComponent, ReactNode } from "react";
+import {
+  CSSProperties,
+  ForwardRefExoticComponent,
+  ReactNode,
+  RefAttributes,
+} from "react";
 
 type Direction = "left" | "right" | "top" | "bottom";
 
 export type TComponent =
   | keyof JSX.IntrinsicElements
-  | ForwardRefExoticComponent<any>;
+  | ForwardRefExoticComponent<
+      React.PropsWithChildren<unknown> & RefAttributes<unknown>
+    >;
 
 export type AnimatedComponentProps<T = Record<string, unknown>> =
   MotionProps & {
@@ -55,4 +62,8 @@ export type StaggeredLettersProps = {
     hidden: Variant;
     visible: Variant;
   };
+};
+
+export type EndlessCarouselProps = {
+  reverse?: boolean;
 };
