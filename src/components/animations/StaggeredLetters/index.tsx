@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { StaggeredLettersProps } from "../types";
 import { defaultAnimations, variantsConfig } from "./index.config";
 import { useTranslations } from "next-intl";
-import { text } from "stream/consumers";
 import { getLocaleCookie } from "@/services/locale";
 
 export const StaggeredLetters = ({

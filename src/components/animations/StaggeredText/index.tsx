@@ -44,7 +44,7 @@ const StaggeredText: React.FC<StaggeredTextProps> = ({
     };
 
     startAnimation();
-  }, [isInView, controls, delay]);
+  }, [isInView, controls, delay, currentLocale]);
 
   return (
     <motion.div
