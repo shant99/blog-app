@@ -42,6 +42,7 @@ export type StaggeredDivsProps = {
   children: ReactNode;
   once?: boolean;
   styles?: CSSProperties;
+  className?: string;
 };
 
 export type AnimatedBorderCardProps = {

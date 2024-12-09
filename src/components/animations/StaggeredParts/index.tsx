@@ -7,6 +7,7 @@ const StaggeredParts: React.FC<StaggeredDivsProps> = ({
   children,
   once = true,
   styles,
+  className = "",
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, amount: 0.4 });
@@ -18,6 +19,7 @@ const StaggeredParts: React.FC<StaggeredDivsProps> = ({
       animate={isInView ? "visible" : "hidden"}
       variants={variantsConfig}
       style={{ ...styles }}
+      className={className}
     >
       {React.Children.map(children, (child, index) => (
         <motion.div key={index} variants={variantsItemConfig}>

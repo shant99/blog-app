@@ -1,9 +1,13 @@
-import React, { useEffect, useRef } from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { StaggeredTextProps } from "../types";
 import getPartsFromDelimiter from "@/utils/delimiter/getPartsFromDelimiter";
 import getDelimiterRegex from "@/utils/delimiter/getDelimiterRegex";
 import { getVariantsConfig, variantsItemConfig } from "./index.config";
+import { getLocaleCookie } from "@/services/locale";
+import { useTranslations } from "next-intl";
 
 const StaggeredText: React.FC<StaggeredTextProps> = ({
   text,
@@ -18,6 +22,16 @@ const StaggeredText: React.FC<StaggeredTextProps> = ({
   const delimiterRegex = getDelimiterRegex(delimiters);
   const controls = useAnimation();
   const textParts = getPartsFromDelimiter(text, delimiters, delimiterRegex);
+
+  const t = useTranslations();
+  const [currentLocale, setCurrentLocale] = useState("en");
+
+  useEffect(() => {
+    (async () => {
+      const locale = await getLocaleCookie();
+      setCurrentLocale(locale);
+    })();
+  }, [t]);
 
   useEffect(() => {
     const startAnimation = async () => {
@@ -38,6 +52,7 @@ const StaggeredText: React.FC<StaggeredTextProps> = ({
       initial="hidden"
       animate={controls}
       variants={getVariantsConfig(speed)}
+      style={{ color: "white" }}
     >
       {textParts.map((part, index) => {
         const text = part.replaceAll("&nbsp;", "");
@@ -49,6 +64,7 @@ const StaggeredText: React.FC<StaggeredTextProps> = ({
             variants={variantsItemConfig}
             style={{
               display: displayStyle,
+              color: "white",
               ...styles,
             }}
           >

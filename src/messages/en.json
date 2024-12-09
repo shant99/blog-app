@@ -13,6 +13,10 @@
     "other": {
         "welcome_to_blog": "Welcome to Blog!"
     },
+    "general": {
+        "loading": "Loading...",
+        "comming_soon": "Comming Soon..."
+    },
     "form": {
         "name": "Name",
         "email": "Email",
@@ -29,5 +33,19 @@
         "invalidCredentials": "Invalid credentials",
         "somethingWentWrong": "Something went wrong",
         "credentialsSigninRetry": "Incorrect email or password. Please try again."
+    },
+    "home": {
+        "welcome_title": "Welcome to Blog !",
+        "welcome_sub_title": "Explore ideas, share stories,and dive into a world of creativity!",
+        "not_registered": "Not registered yet",
+        "get_started": "Get Started",
+        "description": "The Blog App is a sleek and user-friendly platform for sharing anddiscovering engaging content. It allows users to create, read, and interact with posts across various topics while offering secure authentication and a responsive design. Perfect for personal and professional blogging, it’s tailored to deliver a seamless experience on any device.",
+        "choosen_cards": {
+            "part_1": "The Blog App is a sleek and user-friendly platform for sharing and discovering engaging content. It allows users to create, read, and interact with posts",
+            "part_2": "Highlights that the platform can grow with the user’s needs, accommodating more readers or content as the blog expands.",
+            "part_3": "The Blog App is a sleek and user-friendly platform for sharing and discovering engaging content."
+        },
+        "choosen-parts-title": "Everything in your control",
+        "choosen-parts-desc": "Everything you need to share your ideas, connect with your readers, andgrow your blog – all in one place."
     }
 }
