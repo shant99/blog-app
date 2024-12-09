@@ -2,7 +2,6 @@
 
 import { TRegisterSchema, registerSchema } from "@/lib/schemas/RegisterSchema";
 import { Card, CardHeader, CardBody, Button, Input } from "@nextui-org/react";
-import AnimatedComponent from "@/components/animations/AnimatedComponent";
 import registerWithCred from "@/actions/authActions/registerWithCred";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
@@ -35,7 +34,6 @@ function RegisterForm() {
       password: "",
     },
   });
-  console.log(isValid, "isValid");
   const onSubmit = async (data: TRegisterSchema) => {
     const response = await registerWithCred(data, t);
 

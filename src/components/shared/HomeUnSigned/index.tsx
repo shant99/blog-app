@@ -1,22 +1,22 @@
 "use client";
 
 import "./styles.css";
-import RevealedComponent from "@/components/animations/RevealedComponent";
-import ParallaxText from "@/components/animations/ParallaxTextAnimation";
 
 import React from "react";
-import EndlessCarousel from "@/components/animations/EndlessCarousel";
 import SplineRubic from "@/components/animations/SplineRubic";
 import StaggeredText from "@/components/animations/StaggeredText";
 import StaggeredLetters from "@/components/animations/StaggeredLetters";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
-import StaggeredParts from "@/components/animations/StaggeredParts";
-import AnimatedBorderCard from "@/components/animations/AnimatedBorderCard";
-import ChoosenPartsSection from "./components/ChoosenPartsSection";
+// import { useTranslations } from "next-intl";
+// import RevealedComponent from "@/components/animations/RevealedComponent";
+// import ParallaxText from "@/components/animations/ParallaxTextAnimation";
+// import EndlessCarousel from "@/components/animations/EndlessCarousel";
+// import StaggeredParts from "@/components/animations/StaggeredParts";
+// import AnimatedBorderCard from "@/components/animations/AnimatedBorderCard";
+// import ChoosenPartsSection from "./components/ChoosenPartsSection";
 
 export default function HomeUnSigned() {
-  const t = useTranslations();
+  // const t = useTranslations();
   return (
     <div className="home-unsigned">
       <div
