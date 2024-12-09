@@ -1,9 +1,9 @@
-import HomeUnSigned from "@/components/shared/HomeUnSigned";
+import HomeContent from "@/components/shared/HomeContent";
 
 export default async function Home() {
   return (
     <div className="w-full">
-      <HomeUnSigned />
+      <HomeContent />
     </div>
   );
 }

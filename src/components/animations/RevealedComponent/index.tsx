@@ -29,7 +29,7 @@ const AnimatedComponent = <T,>({
   }, [direction]);
 
   return (
-    <div ref={ref} style={{ position: "relative", overflow: "hidden" }}>
+    <div ref={ref}>
       <MotionComponent
         variants={{
           hidden: { opacity: 0, ...initialPosition },
@@ -38,8 +38,8 @@ const AnimatedComponent = <T,>({
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         transition={{ duration: 0.8, delay: 0.55 }}
-        className={className}
         {...props}
+        className={className}
       >
         {children}
       </MotionComponent>

@@ -10,7 +10,7 @@ import {
   useAnimationFrame,
   wrap,
 } from "framer-motion";
-import { ParallaxTextAnimationProps } from "./types";
+import { ParallaxTextAnimationProps } from "../types";
 
 export default function ParallaxTextAnimation({
   children,

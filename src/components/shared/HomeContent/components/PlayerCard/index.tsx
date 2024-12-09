@@ -30,6 +30,7 @@ export default function PLayerCard() {
           width={200}
           height={200}
           shadow="lg"
+          priority={true}
         />
         <div className="player-content-info">
           <div className="player-content-info__title">

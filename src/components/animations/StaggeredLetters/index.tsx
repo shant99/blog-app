@@ -1,7 +1,11 @@
+"use client";
+
 import { motion, useInView, useAnimation } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StaggeredLettersProps } from "../types";
 import { defaultAnimations, variantsConfig } from "./index.config";
+import { useTranslations } from "next-intl";
+import { getLocaleCookie } from "@/services/locale";
 
 export const StaggeredLetters = ({
   text,
@@ -15,6 +19,16 @@ export const StaggeredLetters = ({
   const textArray = Array.isArray(text) ? text : [text];
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5, once });
+
+  const t = useTranslations();
+  const [currentLocale, setCurrentLocale] = useState("en");
+
+  useEffect(() => {
+    (async () => {
+      const locale = await getLocaleCookie();
+      setCurrentLocale(locale);
+    })();
+  }, [t]);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -35,9 +49,7 @@ export const StaggeredLetters = ({
     }
 
     return () => clearTimeout(timeout);
-  }, [isInView, controls, repeatDelay]);
-
-  console.log("render");
+  }, [isInView, controls, repeatDelay, currentLocale]);
 
   return (
     <Wrapper className={className}>
@@ -48,6 +60,7 @@ export const StaggeredLetters = ({
         animate={controls}
         variants={variantsConfig}
         aria-hidden
+        style={{ color: "white" }}
       >
         {textArray.map((line, lineIndex) => (
           <span className="block" key={`${line}-${lineIndex}`}>
@@ -58,6 +71,7 @@ export const StaggeredLetters = ({
                     key={`${char}-${charIndex}`}
                     className="inline-block"
                     variants={animation}
+                    style={{ color: "white" }}
                   >
                     {char}
                   </motion.span>

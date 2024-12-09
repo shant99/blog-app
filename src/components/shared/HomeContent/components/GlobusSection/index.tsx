@@ -1,4 +1,5 @@
 import React from "react";
+import { svgStyles } from "./svg.styles";
 
 const VideoWithSvgOverlay = () => {
   return (
@@ -26,103 +27,7 @@ const VideoWithSvgOverlay = () => {
         viewBox="0 0 1280 768"
         fill="none"
       >
-        <style>
-          {`@keyframes moveReliable {
-              0% {
-                transform: translate(0, 0);
-              }
-              100% {
-                transform: translate(-15px, -40px);
-              }
-            }
-
-            @keyframes moveScalability {
-              0% {
-                transform: translate(0, 0);
-              }
-              100% {
-                transform: translate(-20px, 15px);
-              }
-            }
-
-            @keyframes moveHighCompatibility {
-              0% {
-                transform: translate(0, 0);
-              }
-              100% {
-                transform: translate(10px, -5px);
-              }
-            }
-
-            @keyframes moveFastSearch {
-              0% {
-                transform: translate(0, 0);
-              }
-              100% {
-                transform: translate(-10px, 20px);
-              }
-            }
-
-            @keyframes movePGVector {
-              0% {
-                transform: translate(0, 0);
-              }
-              100% {
-                transform: translate(5px, -35px);
-              }
-            }
-
-            @keyframes moveLangChain {
-              0% {
-                transform: translate(0, 0);
-              }
-              100% {
-                transform: translate(-20px, 15px);
-              }
-            }
-
-            .animate-reliable {
-              animation: moveReliable 2s ease-in-out infinite alternate;
-            }
-
-            .animate-scalability {
-              animation: moveScalability 2.2s ease-in-out infinite alternate;
-            }
-
-            .animate-high-compatibility {
-              animation: moveHighCompatibility 2.5s ease-in-out infinite alternate;
-            }
-
-            .animate-fast-search {
-              animation: moveFastSearch 1.8s ease-in-out infinite alternate;
-            }
-
-            .animate-pgvector {
-              animation: movePGVector 2.2s ease-in-out infinite alternate;
-            }
-
-            .animate-langchain {
-              animation: moveLangChain 2.7s ease-in-out infinite alternate;
-            }
-
-             text {
-                pointer-events: all; /* Make text interactive */
-            }
-
-            text:hover {
-                filter: blur(0); /* Remove blur */
-                opacity: 1; /* Make fully visible */
-                transition: filter 0.3s ease, opacity 0.3s ease;
-                color: red;
-                cursor: pointer;
-            }
-            
-            g {
-              transform-origin: inherit;
-            }
-            `}
-        </style>
-        {/* Reliable */}
+        <style>{svgStyles}</style>
         <g
           className="relative mix-blend-hard-light transition-transform duration-200"
           style={{ transformOrigin: "289.431px 138.72px" }}
@@ -136,8 +41,6 @@ const VideoWithSvgOverlay = () => {
             Reliable
           </text>
         </g>
-
-        {/* Scalability */}
         <g
           className="relative mix-blend-hard-light transition-transform duration-200"
           style={{ transformOrigin: "928.966px 184.8px" }}
@@ -151,8 +54,6 @@ const VideoWithSvgOverlay = () => {
             Scalability
           </text>
         </g>
-
-        {/* High Compatibility */}
         <g
           className="relative mix-blend-hard-light transition-transform duration-200"
           style={{ transformOrigin: "219.772px 307.68px" }}
@@ -166,8 +67,6 @@ const VideoWithSvgOverlay = () => {
             High compatibility
           </text>
         </g>
-
-        {/* Blazingly Fast Search */}
         <g
           className="relative mix-blend-hard-light transition-transform duration-200"
           style={{ transformOrigin: "1041.91px 307.68px" }}
@@ -181,8 +80,6 @@ const VideoWithSvgOverlay = () => {
             Blazingly fast search
           </text>
         </g>
-
-        {/* Works with PGVECTOR */}
         <g
           className="relative mix-blend-hard-light transition-transform duration-200"
           style={{ transformOrigin: "341.481px 576.48px" }}
@@ -196,8 +93,6 @@ const VideoWithSvgOverlay = () => {
             Works with PGVECTOR
           </text>
         </g>
-
-        {/* Works with LangChain */}
         <g
           className="relative mix-blend-hard-light transition-transform duration-200"
           style={{ transformOrigin: "999.738px 614.88px" }}
