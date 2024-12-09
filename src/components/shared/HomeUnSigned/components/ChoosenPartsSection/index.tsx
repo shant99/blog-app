@@ -17,12 +17,12 @@ const DynamicVideoWithSvgOverlay = dynamic(
 const textParts = [
   "The Blog App is a sleek and user-friendly platform for sharing and discovering engaging content. It allows users to create, read, and interact with posts",
   "Highlights that the platform can grow with the user’s needs, accommodating more readers or content as the blog expands.",
-  "The Blog App is a sleek and user-friendly platform for sharing and discovering engaging content. It allows users to create, read, and interact with posts",
+  "The Blog App is a sleek and user-friendly platform for sharing and discovering engaging content.",
 ];
 const contentParts = [
-  <PLayerCard />,
-  <DynamicVideoWithSvgOverlay />,
-  <div>Two</div>,
+  <PLayerCard key={"index-1"} />,
+  <DynamicVideoWithSvgOverlay key={"index-2"} />,
+  <div key={"index-3"}>Two</div>,
 ];
 
 export default function ChoosenPartsSection() {
