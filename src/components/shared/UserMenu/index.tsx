@@ -22,7 +22,7 @@ export default function UserMenu({ user }: Props) {
   const t = useTranslations();
 
   return (
-    <Dropdown placement="bottom-end">
+    <Dropdown placement="bottom-end" style={{ color: "black" }}>
       <DropdownTrigger>
         <Avatar
           isBordered

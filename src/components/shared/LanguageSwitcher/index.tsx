@@ -45,13 +45,13 @@ export default function LanguageSwitcher() {
       value={value}
       defaultSelectedKeys={[value]}
       className={clsx(
-        "max-w-36",
+        "max-w-40 text-black select-label",
         isPending && "pointer-events-none opacity-60"
       )}
       size="sm"
     >
       {locales.map((item) => (
-        <SelectItem key={item.key} value={item.key}>
+        <SelectItem className="text-black" key={item.key} value={item.key}>
           {item.label}
         </SelectItem>
       ))}

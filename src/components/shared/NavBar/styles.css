@@ -1,13 +1,7 @@
-.navbar {
-  @apply bg-gradient-to-r;
-  @apply from-gray-800;
-  @apply via-blue-900;
-  @apply to-black;
-}
 .navbar-brand span {
-  @apply font-bold;
-  @apply text-3xl;
-  @apply text-gray-200;
-  text-shadow: 0 0 0.2rem #fff, 0 0 0.3rem var(--hover-neon-color);
+  @apply font-bold
+  text-3xl
+text-gray-200;
+  text-shadow: 0 0 0.2rem var(--white), 0 0 0.3rem var(--hover-neon-color);
   letter-spacing: 0.2rem;
 }

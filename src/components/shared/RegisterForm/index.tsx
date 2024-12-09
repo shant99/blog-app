@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "./styles.css";
 
-export default function RegisterForm() {
+function RegisterForm() {
   const t = useTranslations();
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
@@ -28,8 +28,12 @@ export default function RegisterForm() {
   } = useForm<TRegisterSchema>({
     resolver: zodResolver(registerSchema),
     mode: "onTouched",
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
   });
-
   const onSubmit = async (data: TRegisterSchema) => {
     const response = await registerWithCred(data, t);
 
@@ -61,7 +65,6 @@ export default function RegisterForm() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <Input
-              defaultValue=""
               label={t("form.name")}
               variant="bordered"
               {...register("name")}
@@ -69,7 +72,6 @@ export default function RegisterForm() {
               errorMessage={errors.name?.message}
             />
             <Input
-              defaultValue=""
               label={t("form.email")}
               variant="bordered"
               {...register("email")}
@@ -77,7 +79,6 @@ export default function RegisterForm() {
               errorMessage={errors.email?.message}
             />
             <Input
-              defaultValue=""
               label={t("form.password")}
               variant="bordered"
               type="password"
@@ -100,3 +101,5 @@ export default function RegisterForm() {
     </Card>
   );
 }
+
+export default RegisterForm;

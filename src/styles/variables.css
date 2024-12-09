@@ -4,4 +4,11 @@
   --neon-color: #00f6ff;
   --hover-neon-color: #ff007f;
   --text-color-dark: #171717;
+  --text-color-secondary: #f1f7feb5;
+  --section-border: rgb(41, 41, 225);
+  --bg-dark: #000000;
+  --bg-gray: #1a1a1af5;
+  --white: #fff;
+  --gray: gray;
+  --animated-border-color: #e1ff00;
 }

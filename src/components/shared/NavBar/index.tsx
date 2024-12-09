@@ -8,50 +8,65 @@ import { useTranslations } from "next-intl";
 import UserMenu from "../UserMenu";
 import NavLink from "../NavLink";
 import Link from "next/link";
+import AnimatedComponent from "@/components/animations/AnimatedComponent";
 import "./styles.css";
 
 export default function TopNav() {
   const t = useTranslations();
   const baseLinks = getLinks(t);
   const authLinks = getAuthLinks(t);
-  const session = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <header className="header" style={{ height: "64px" }}></header>;
+  }
 
   return (
-    <Navbar
-      maxWidth="full"
-      className="navbar"
-      classNames={{
-        item: navbarItemClasses,
-      }}
-    >
-      <NavbarBrand className="navbar-brand" as={Link} href="/">
-        <span>Blog</span>
-      </NavbarBrand>
+    <header className="header">
+      <Navbar
+        maxWidth="full"
+        className="navbar"
+        classNames={{
+          item: navbarItemClasses,
+        }}
+      >
+        <AnimatedComponent
+          component={NavbarBrand}
+          className="navbar-brand"
+          as={Link}
+          href="/"
+        >
+          <span>Blog</span>
+        </AnimatedComponent>
 
-      {session?.status === "loading" ? null : session?.data ? (
-        <>
-          <NavbarContent justify="center">
+        {session ? (
+          <AnimatedComponent
+            component={NavbarContent}
+            justify="center"
+            className="flex justify-center gap-4"
+          >
             {baseLinks.map(({ label, href }) => (
               <NavLink key={label} href={href} label={label} />
             ))}
-          </NavbarContent>
-          <UserMenu user={session?.data?.user} />
-        </>
-      ) : (
-        <NavbarContent justify="end">
-          {authLinks.map(({ label, href }) => (
-            <Button
-              key={label}
-              as={Link}
-              href={href}
-              variant="bordered"
-              className="text-white"
-            >
-              {label}
-            </Button>
-          ))}
-        </NavbarContent>
-      )}
-    </Navbar>
+
+            <UserMenu user={session?.user} />
+          </AnimatedComponent>
+        ) : (
+          <AnimatedComponent component={NavbarContent} justify="end">
+            {authLinks.map(({ label, href }) => (
+              <Button
+                key={label}
+                as={Link}
+                href={href}
+                variant="bordered"
+                className="text-[var(--white)]"
+              >
+                {label}
+              </Button>
+            ))}
+          </AnimatedComponent>
+        )}
+      </Navbar>
+    </header>
   );
 }

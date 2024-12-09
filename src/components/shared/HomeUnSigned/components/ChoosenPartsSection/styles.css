@@ -1,0 +1,9 @@
+.text-part__item:hover {
+  border: 1px solid white !important;
+}
+
+.text-part__item.current-part:hover {
+  border: 1px solid transparent !important;
+}
+
+/* ---------- */
