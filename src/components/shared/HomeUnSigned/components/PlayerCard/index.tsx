@@ -5,10 +5,7 @@ import StaggeredLetters from "@/components/animations/StaggeredLetters";
 import { Button } from "@nextui-org/react";
 import confetti from "canvas-confetti";
 import { useRef } from "react";
-
-function randomInRange(min: number, max: number) {
-  return Math.random() * (max - min) + min;
-}
+import { randomInRange } from "@/lib/confetti";
 
 export default function PLayerCard() {
   const buttonRef = useRef(null);

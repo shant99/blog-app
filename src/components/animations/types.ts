@@ -7,13 +7,14 @@ export type TComponent =
   | keyof JSX.IntrinsicElements
   | ForwardRefExoticComponent<any>;
 
-export type AnimatedComponentProps<T = {}> = MotionProps & {
-  component?: TComponent;
-  className?: string;
-  children?: ReactNode;
-  direction?: Direction;
-  once?: boolean;
-} & T;
+export type AnimatedComponentProps<T = Record<string, unknown>> =
+  MotionProps & {
+    component?: TComponent;
+    className?: string;
+    children?: ReactNode;
+    direction?: Direction;
+    once?: boolean;
+  } & T;
 
 export type StaggeredTextProps = {
   text: string;

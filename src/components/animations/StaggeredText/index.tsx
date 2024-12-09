@@ -1,5 +1,5 @@
 import React, { useEffect, useId, useRef } from "react";
-import { delay, motion, useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { StaggeredTextProps } from "../types";
 import getPartsFromDelimiter from "@/utils/delimiter/getPartsFromDelimiter";
 import getDelimiterRegex from "@/utils/delimiter/getDelimiterRegex";

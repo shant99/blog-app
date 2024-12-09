@@ -1,4 +1,3 @@
-import { useId } from "react";
 import "./styles.css";
 import React from "react";
 import clsx from "clsx";
@@ -19,7 +18,6 @@ export default function EndlessCarousel({ reverse = true }: any) {
     >
       <div className="list">
         {arr.map((item: any, index: any) => {
-          const id = useId();
           return (
             <div
               className="item"
@@ -28,7 +26,7 @@ export default function EndlessCarousel({ reverse = true }: any) {
                   "--position": index + 1,
                 } as React.CSSProperties
               }
-              key={id}
+              key={`index-${index}`}
             >
               {item}
             </div>

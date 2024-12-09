@@ -35,7 +35,9 @@ export const StaggeredLetters = ({
     }
 
     return () => clearTimeout(timeout);
-  }, [isInView]);
+  }, [isInView, controls, repeatDelay]);
+
+  console.log("render");
 
   return (
     <Wrapper className={className}>
