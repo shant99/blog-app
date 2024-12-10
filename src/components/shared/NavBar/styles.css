@@ -1,7 +1,0 @@
-.navbar-brand span {
-  @apply font-bold
-  text-3xl
-text-gray-200;
-  text-shadow: 0 0 0.2rem var(--white), 0 0 0.3rem var(--hover-neon-color);
-  letter-spacing: 0.2rem;
-}

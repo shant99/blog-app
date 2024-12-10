@@ -38,7 +38,7 @@ export default function LoginForm() {
     }
 
     if (response.status === "success") {
-      router.push("/welcome");
+      router.push("/welcome?action=login");
     }
   };
 

@@ -1,21 +1,22 @@
 {
-    "HomePage": {
-        "title": "Privet mir"
-    },
     "navLinks": {
         "members": "Участники",
         "lists": "Списки",
         "messages": "Сообщения",
         "login": "Войти",
         "register": "Регистрация",
-        "logout": "Выйти"
+        "logout": "Выйти",
+        "profile": "Профиль",
+        "photos": "Фотографии",
+        "chat": "Чат"
     },
     "other": {
         "welcome_to_blog": "Добро пожаловать в блог!"
     },
     "general": {
         "loading": "Загрузка...",
-        "comming_soon": "Скоро будет..."
+        "comming_soon": "Скоро будет...",
+        "go_back": "Вернуться назад"
     },
     "form": {
         "name": "Имя",
@@ -25,7 +26,8 @@
     },
     "user_profile": {
         "signed_in": "Вход выполнен как",
-        "edit_profile": "Редактировать профиль"
+        "edit_profile": "Редактировать профиль",
+        "profile": "Профиль"
     },
     "errors": {
         "userAlreadyExists": "Пользователь с таким email уже существует.",
@@ -47,5 +49,8 @@
         },
         "choosen-parts-title": "Все под вашим контролем",
         "choosen-parts-desc": "Все, что нужно для того, чтобы делиться своими идеями, общаться с читателями и развивать свой блог – всё в одном месте."
+    },
+    "members": {
+        "count": "Количество участников"
     }
 }

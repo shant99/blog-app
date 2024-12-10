@@ -1,21 +1,22 @@
 {
-    "HomePage": {
-        "title": "Hello world!"
-    },
     "navLinks": {
         "members": "Members",
         "lists": "Lists",
         "messages": "Messages",
         "login": "Login",
         "register": "Register",
-        "logout": "Log out"
+        "logout": "Log out",
+        "profile": "Profile",
+        "photos": "Photos",
+        "chat": "Chat"
     },
     "other": {
         "welcome_to_blog": "Welcome to Blog!"
     },
     "general": {
         "loading": "Loading...",
-        "comming_soon": "Comming Soon..."
+        "comming_soon": "Comming Soon...",
+        "go_back": "Go back"
     },
     "form": {
         "name": "Name",
@@ -25,7 +26,8 @@
     },
     "user_profile": {
         "signed_in": "Signed in as",
-        "edit_profile": "Edit profile"
+        "edit_profile": "Edit profile",
+        "profile": "Profile"
     },
     "errors": {
         "userAlreadyExists": "A user with this email already exists.",
@@ -47,5 +49,8 @@
         },
         "choosen-parts-title": "Everything in your control",
         "choosen-parts-desc": "Everything you need to share your ideas, connect with your readers, andgrow your blog – all in one place."
+    },
+    "members": {
+        "count": "Members count"
     }
 }
