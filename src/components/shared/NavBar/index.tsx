@@ -9,7 +9,6 @@ import UserMenu from "../UserMenu";
 import NavLink from "../NavLink";
 import Link from "next/link";
 import AnimatedComponent from "@/components/animations/AnimatedComponent";
-import "./styles.css";
 
 export default function TopNav() {
   const t = useTranslations();
@@ -60,6 +59,7 @@ export default function TopNav() {
                 href={href}
                 variant="bordered"
                 className="text-[var(--white)]"
+                prefetch={false}
               >
                 {label}
               </Button>

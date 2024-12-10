@@ -42,7 +42,7 @@ function RegisterForm() {
     }
 
     if (response.status === "success") {
-      router.push("/welcome");
+      router.push("/welcome?action=register");
     }
   };
 
