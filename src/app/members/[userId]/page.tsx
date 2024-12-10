@@ -9,9 +9,9 @@ export default async function MemberDetailedPage({
 }: {
   params: { userId: string };
 }) {
-  const { userId } = await params;
+  const { userId } = params;
   const member = await getMemberByUserId(userId);
-  const t = await getMessages();
+  const t = (await getMessages()) || {};
 
   if (!member) return notFound();
 
@@ -21,7 +21,7 @@ export default async function MemberDetailedPage({
         {t.user_profile.profile}
       </CardHeader>
       <Divider />
-      <CardBody>{member.description}</CardBody>
+      <CardBody>{member.description || "No description"}</CardBody>
     </>
   );
 }
