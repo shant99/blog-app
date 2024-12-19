@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import AnimatedBorderCard from "@/components/animations/AnimatedBorderCard";
 import StaggeredParts from "@/components/animations/StaggeredParts";
 import { useTranslations } from "next-intl";
@@ -6,6 +6,7 @@ import PLayerCard from "../PlayerCard";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
 import "./styles.css";
+import LoadingComponent from "@/components/shared/LoadingComponent";
 
 const DynamicGlobusSection = dynamic(() => import("../GlobusSection"), {
   ssr: false,
@@ -21,12 +22,19 @@ const contentParts = [
 export default function ChoosenPartsSection() {
   const [selectedPart, setSelectedPart] = useState(0);
   const t = useTranslations();
+  const [isPending, startTransition] = useTransition();
 
   const textParts = [
     t("home.choosen_cards.part_1"),
     t("home.choosen_cards.part_2"),
     t("home.choosen_cards.part_3"),
   ];
+
+  function selectPartHandler(index: number) {
+    startTransition(() => {
+      setSelectedPart(index);
+    });
+  }
 
   return (
     <div className="choosen-parts-section">
@@ -41,7 +49,7 @@ export default function ChoosenPartsSection() {
                 "text-part__item",
                 isCurrent ? "current-part" : ""
               )}
-              onClick={() => setSelectedPart(index)}
+              onClick={() => selectPartHandler(index)}
               key={`index-${index}`}
               style={{ borderRadius: "15px", border: "1px solid transparent" }}
             >
@@ -57,7 +65,13 @@ export default function ChoosenPartsSection() {
         })}
       </StaggeredParts>
 
-      <div className="choosen-parts-content">{contentParts[selectedPart]}</div>
+      {isPending ? (
+        <LoadingComponent />
+      ) : (
+        <div className="choosen-parts-content">
+          {contentParts[selectedPart]}
+        </div>
+      )}
     </div>
   );
 }
