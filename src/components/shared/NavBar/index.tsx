@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl";
 import UserMenu from "../UserMenu";
 import NavLink from "../NavLink";
 import Link from "next/link";
-import AnimatedComponent from "@/components/animations/AnimatedComponent";
 
 export default function TopNav() {
   const t = useTranslations();
