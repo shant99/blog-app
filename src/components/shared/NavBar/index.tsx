@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl";
 import UserMenu from "../UserMenu";
 import NavLink from "../NavLink";
 import Link from "next/link";
-import AnimatedComponent from "@/components/animations/AnimatedComponent";
 
 export default function TopNav() {
   const t = useTranslations();
@@ -29,29 +28,20 @@ export default function TopNav() {
           item: navbarItemClasses,
         }}
       >
-        <AnimatedComponent
-          component={NavbarBrand}
-          className="navbar-brand"
-          as={Link}
-          href="/"
-        >
+        <NavbarBrand className="navbar-brand" as={Link} href="/">
           <span>Blog</span>
-        </AnimatedComponent>
+        </NavbarBrand>
 
         {session ? (
-          <AnimatedComponent
-            component={NavbarContent}
-            justify="center"
-            className="flex justify-center gap-4"
-          >
+          <NavbarContent justify="center" className="flex justify-center gap-4">
             {baseLinks.map(({ label, href }) => (
               <NavLink key={label} href={href} label={label} />
             ))}
 
             <UserMenu user={session?.user} />
-          </AnimatedComponent>
+          </NavbarContent>
         ) : (
-          <AnimatedComponent component={NavbarContent} justify="end">
+          <NavbarContent justify="end">
             {authLinks.map(({ label, href }) => (
               <Button
                 key={label}
@@ -64,7 +54,7 @@ export default function TopNav() {
                 {label}
               </Button>
             ))}
-          </AnimatedComponent>
+          </NavbarContent>
         )}
       </Navbar>
     </header>

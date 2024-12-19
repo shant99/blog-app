@@ -50,7 +50,7 @@ body main {
   items-center 
   gap-8
   min-h-screen
-  justify-center
+  justify-start
   w-full 
   bg-gradient-to-r
   from-[var(--bg-dark)] via-[var(--bg-gray)]
