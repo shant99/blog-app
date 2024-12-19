@@ -8,7 +8,7 @@ import React from "react";
 export default async function ListsPage({
   searchParams,
 }: {
-  searchParams: { type: string };
+  searchParams: Promise<{ type: string }>;
 }) {
   const { type } = await searchParams;
   const likeIds = await fetchCurrentUserLikeIds();
