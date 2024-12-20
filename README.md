@@ -1,5 +1,7 @@
 # About Blog-app
 
+![This is blog-app!](/public/images/blog.png "Blog-app !")
+
 ## Getting Started
 
 First, run the development server:

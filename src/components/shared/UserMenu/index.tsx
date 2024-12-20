@@ -8,17 +8,19 @@ import {
   DropdownSection,
   DropdownTrigger,
 } from "@nextui-org/react";
-import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 
 type Props = {
-  user: Session["user"];
+  userInfo: {
+    name: string | null;
+    image: string | null;
+  } | null;
 };
 
-export default function UserMenu({ user }: Props) {
+export default function UserMenu({ userInfo }: Props) {
   const t = useTranslations();
 
   return (
@@ -29,9 +31,9 @@ export default function UserMenu({ user }: Props) {
           as="button"
           className="transition-transform"
           color="default"
-          name={user?.name || "user avatar"}
+          name={userInfo?.name || "user avatar"}
           size="sm"
-          src={user?.image || "/images/user.png"}
+          src={userInfo?.image || "/images/user.png"}
         />
       </DropdownTrigger>
       <DropdownMenu variant="flat" aria-label="User actions menu">
@@ -42,7 +44,7 @@ export default function UserMenu({ user }: Props) {
             className="h-14 flex flex-row"
             aria-label="username"
           >
-            {t("user_profile.signed_in")} {user?.name}
+            {t("user_profile.signed_in")} {userInfo?.name}
           </DropdownItem>
         </DropdownSection>
         <DropdownItem as={Link} href="/members/edit">

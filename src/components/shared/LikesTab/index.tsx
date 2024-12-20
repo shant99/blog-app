@@ -53,7 +53,10 @@ export default function LikesTab({
           ) : (
             <>
               {members.length > 0 ? (
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 max-w-[1300px]">
+                <div
+                  tabIndex={0}
+                  className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 max-w-[1300px]"
+                >
                   {members.map((member) => (
                     <MemberCard
                       key={member.id}

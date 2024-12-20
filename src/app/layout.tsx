@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Providers from "@/components/Providers";
-import TopNav from "@/components/shared/NavBar";
+import TopNav from "@/components/shared/TopNav";
 import { getLocale } from "next-intl/server";
 import { IRootLayout } from "@/types/global";
 import { ToastContainer } from "react-toastify";
