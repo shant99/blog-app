@@ -1,15 +1,13 @@
-import { getMemberPhotosByUserId } from "@/actions/members/getMemberPhotosByUserId";
+import { getMemberPhotosByUserId } from "@/actions/membersActions/getMemberPhotosByUserId";
 import { CardHeader, Divider, CardBody, Image } from "@nextui-org/react";
 import React from "react";
 
 export default async function PhotosPage({
   params,
 }: {
-  params: Promise<{ userId: string }>;
+  params: { userId: string };
 }) {
-  const { userId } = await params;
-  const photos = await getMemberPhotosByUserId(userId);
-
+  const photos = await getMemberPhotosByUserId(params.userId);
   return (
     <>
       <CardHeader className="text-2xl font-semibold text-default">

@@ -1,4 +1,4 @@
-import { getMemberByUserId } from "@/actions/members/getMemberByUserId";
+import { getMemberByUserId } from "@/actions/membersActions/getMemberByUserId";
 import { CardBody, CardHeader, Divider } from "@nextui-org/react";
 // import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";

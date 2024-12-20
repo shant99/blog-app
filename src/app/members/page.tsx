@@ -1,7 +1,7 @@
 "use server";
 
 import fetchCurrentUserLikeIds from "@/actions/likeActions/fetchCurrentUserLikeIds";
-import { getMembers } from "@/actions/members/getMembers";
+import { getMembers } from "@/actions/membersActions/getMembers";
 import MemberCard from "@/components/shared/MembersCard";
 // import { getMessages } from "next-intl/server";
 
