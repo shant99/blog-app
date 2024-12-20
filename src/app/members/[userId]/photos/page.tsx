@@ -5,9 +5,10 @@ import React from "react";
 export default async function PhotosPage({
   params,
 }: {
-  params: { userId: string };
+  params: Promise<{ userId: string }>;
 }) {
-  const photos = await getMemberPhotosByUserId(params.userId);
+  const { userId } = await params;
+  const photos = await getMemberPhotosByUserId(userId);
   return (
     <>
       <CardHeader className="text-2xl font-semibold text-default">
