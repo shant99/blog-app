@@ -1,6 +1,6 @@
 "use client";
 
-import { calculateAge } from "@/utils/calculateAge";
+import { calculateAge } from "@/utils/dates/calculateAge";
 import {
   Button,
   Card,
