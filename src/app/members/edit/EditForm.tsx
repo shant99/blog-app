@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Member } from "@prisma/client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
