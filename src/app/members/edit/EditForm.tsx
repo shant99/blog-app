@@ -30,11 +30,6 @@ export default function EditForm({ member }: Props) {
     resolver: zodResolver(memberEditSchema),
     mode: "onTouched",
   });
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (member) {
@@ -59,10 +54,6 @@ export default function EditForm({ member }: Props) {
       handleFormServerErrors(result, setError);
     }
   };
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">

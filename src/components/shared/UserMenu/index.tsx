@@ -43,16 +43,18 @@ export default function UserMenu({ userInfo }: Props) {
             as="span"
             className="h-14 flex flex-row"
             aria-label="username"
+            key="user-name"
           >
             {t("user_profile.signed_in")} {userInfo?.name}
           </DropdownItem>
         </DropdownSection>
-        <DropdownItem as={Link} href="/members/edit">
+        <DropdownItem key="edit-profile" as={Link} href="/members/edit">
           {t("user_profile.edit_profile")}
         </DropdownItem>
         <DropdownItem
+          key="logout"
           color="danger"
-          onClick={async () => signOut({ redirectTo: "/login" })}
+          onPress={async () => signOut({ redirectTo: "/login" })}
         >
           {t("navLinks.logout")}
         </DropdownItem>

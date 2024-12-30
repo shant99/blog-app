@@ -4,7 +4,7 @@ import { TRegisterSchema, registerSchema } from "@/lib/schemas/RegisterSchema";
 import { Card, CardHeader, CardBody, Button, Input } from "@nextui-org/react";
 import registerWithCred from "@/actions/authActions/registerWithCred";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { GiPadlock } from "react-icons/gi";
@@ -15,11 +15,6 @@ import "./styles.css";
 function RegisterForm() {
   const t = useTranslations();
   const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const {
     register,
@@ -45,10 +40,6 @@ function RegisterForm() {
       router.push("/welcome?action=register");
     }
   };
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <Card className="box-shadow-neon card">

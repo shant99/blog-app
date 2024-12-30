@@ -9,14 +9,12 @@ import { useEffect, useState, useTransition } from "react";
 export default function LanguageSwitcher() {
   const t = useTranslations();
   const [value, setValue] = useState<string>("en");
-  const [isMounted, setIsMounted] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     (async () => {
       try {
         const locale = await getLocaleCookie();
-        setIsMounted(true);
         setValue(locale);
       } catch (error) {
         console.error("Error fetching locale cookie: ", error);
@@ -31,10 +29,6 @@ export default function LanguageSwitcher() {
       setLocaleCookie(lang);
     });
   };
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <Select
