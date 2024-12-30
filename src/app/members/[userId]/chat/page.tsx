@@ -12,7 +12,7 @@ export default async function ChatPage({
 }: {
   params: { userId: string };
 }) {
-  const messages = await getMessageThread(params.userId);
+  const messages = await getMessageThread(params.userId as string);
   const userId = await getAuthUserId();
   const body = (
     <div>
