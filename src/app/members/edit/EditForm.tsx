@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Member } from "@prisma/client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -30,11 +30,6 @@ export default function EditForm({ member }: Props) {
     resolver: zodResolver(memberEditSchema),
     mode: "onTouched",
   });
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (member) {
@@ -59,10 +54,6 @@ export default function EditForm({ member }: Props) {
       handleFormServerErrors(result, setError);
     }
   };
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
