@@ -10,9 +10,10 @@ import MessageBox from "@/components/shared/MessageBox";
 export default async function ChatPage({
   params,
 }: {
-  params: { userId: string };
+  params: Promise<{ userId: string }>;
 }) {
-  const messages = await getMessageThread(params.userId as string);
+  const { userId: userIdParam } = await params;
+  const messages = await getMessageThread(userIdParam);
   const userId = await getAuthUserId();
   const body = (
     <div>
