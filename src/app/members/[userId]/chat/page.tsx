@@ -1,7 +1,6 @@
 "use server";
 
 import CardInnerWrapper from "@/components/shared/CardInnerWrapper";
-import { CardHeader, Divider, CardBody } from "@nextui-org/react";
 import React from "react";
 import ChatForm from "./ChatForm";
 import getAuthUserId from "@/actions/authActions/getAuthUserId";
