@@ -1,6 +1,6 @@
 "use client";
 
-import { calculateAge } from "@/utils/calculateAge";
+import { calculateAge } from "@/utils/dates/calculateAge";
 import { Card, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
