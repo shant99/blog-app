@@ -6,7 +6,7 @@ import React from "react";
 export default async function MessagesPage({
   searchParams,
 }: {
-  searchParams: { container: string };
+  searchParams: Promise<{ container: string }>;
 }) {
   const { container } = await searchParams;
   const messages = await getMessagesByContainer(container);
