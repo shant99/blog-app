@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 
 import { notFound } from "next/navigation";
-import { Card } from "@nextui-org/react";
 import getAuthUserId from "@/actions/authActions/getAuthUserId";
 import { getMemberByUserId } from "@/actions/membersActions/getMemberByUserId";
 import MemberSidebar from "@/components/shared/MemberSidebar";
@@ -28,7 +27,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
         <MemberSidebar member={member} navLinks={navLinks} />
       </div>
       <div className="col-span-9">
-        <Card className="w-full mt-10 h-[80vh]">{children}</Card>
+        <div className="w-full mt-10 h-[80vh]">{children}</div>
       </div>
     </div>
   );

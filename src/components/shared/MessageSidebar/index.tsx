@@ -1,5 +1,6 @@
 "use client";
 
+import useMessageStore from "@/store/useMessageStore";
 import { Chip } from "@nextui-org/react";
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -37,6 +38,8 @@ export default function MessageSidebar() {
     router.replace(`${pathname}?${params}`);
   };
 
+  const unreadCount = useMessageStore((state) => state.unreadCount);
+
   return (
     <div className="flex flex-col shadow-md rounded-lg cursor-pointer">
       {items.map(({ key, icon: Icon, label, chip }) => (
@@ -51,8 +54,7 @@ export default function MessageSidebar() {
           <Icon size={24} />
           <div className="flex justify-between flex-grow">
             <span>{label}</span>
-            {chip && <Chip>2</Chip>}
-            {/* Demo Purpose: will change the incoming messages count in upcoming commits */}
+            {chip && <Chip>{unreadCount}</Chip>}
           </div>
         </div>
       ))}

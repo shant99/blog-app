@@ -1,4 +1,4 @@
-import { CardHeader, Divider, CardBody } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import React from "react";
 
 import getAuthUserId from "@/actions/authActions/getAuthUserId";
@@ -14,18 +14,18 @@ export default async function PhotosPage() {
 
   return (
     <>
-      <CardHeader className="flex flex-row justify-between items-center">
+      <div className="flex flex-row justify-between items-center">
         <div className="text-2xl font-semibold text-default">Edit Profile</div>
-      </CardHeader>
+      </div>
       <Divider />
-      <CardBody>
+      <div>
         <MemberPhotoUpload />
         <MemberPhotos
           photos={photos}
           editing={true}
           mainImageUrl={member?.image}
         />
-      </CardBody>
+      </div>
     </>
   );
 }

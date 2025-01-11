@@ -1,4 +1,6 @@
-import getMessagesByContainer from "@/actions/messageActions/getMessagesByContainer";
+"use server";
+
+import { getMessagesByContainer } from "@/actions/messageActions/getMessagesByContainer";
 import MessageSidebar from "@/components/shared/MessageSidebar";
 import MessageTable from "@/components/shared/MessageTable";
 import React from "react";
@@ -17,7 +19,7 @@ export default async function MessagesPage({
         <MessageSidebar />
       </div>
       <div className="col-span-10">
-        <MessageTable messages={messages} />
+        <MessageTable initialMessages={messages} />
       </div>
     </div>
   );

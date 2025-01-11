@@ -38,6 +38,12 @@ Prisma model db add
 npx prisma db push
 ```
 
+Prisma users seeds
+
+```
+npx prisma db seed
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
