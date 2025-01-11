@@ -8,7 +8,7 @@ export default async function Layout({
   params,
 }: {
   children: ReactNode;
-  params: { userId: string };
+  params: Promise<{ userId: string }>;
 }) {
   const { userId } = await params;
   const member = await getMemberByUserId(userId);
