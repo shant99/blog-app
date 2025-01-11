@@ -32,7 +32,7 @@ export default async function Layout({
         <MemberSidebar member={member} navLinks={navLinks} />
       </div>
       <div className="col-span-9 w-full ">
-        <Card className="w-full mt-10 min-h-[80vh]">{children}</Card>
+        <div className="w-full mt-10 min-h-[80vh]">{children}</div>
       </div>
     </div>
   );

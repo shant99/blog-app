@@ -1,7 +1,7 @@
 "use client";
 
 import { TRegisterSchema, registerSchema } from "@/lib/schemas/RegisterSchema";
-import { Card, CardHeader, CardBody, Button, Input } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import registerWithCred from "@/actions/authActions/registerWithCred";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
@@ -42,8 +42,8 @@ function RegisterForm() {
   };
 
   return (
-    <Card className="box-shadow-neon card">
-      <CardHeader className="card-header">
+    <div className="box-shadow-neon card">
+      <div className="card-header">
         <div>
           <div>
             <GiPadlock size={30} />
@@ -51,8 +51,8 @@ function RegisterForm() {
           </div>
           <p>{t("other.welcome_to_blog")}</p>
         </div>
-      </CardHeader>
-      <CardBody className="card-body">
+      </div>
+      <div className="card-body">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <Input
@@ -88,8 +88,8 @@ function RegisterForm() {
             </Button>
           </div>
         </form>
-      </CardBody>
-    </Card>
+      </div>
+    </div>
   );
 }
 

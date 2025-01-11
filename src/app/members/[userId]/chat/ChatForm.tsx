@@ -6,13 +6,19 @@ import { handleFormServerErrors } from "@/utils/errors/handleFormServerErrors";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input } from "@nextui-org/react";
 import { useParams, useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { HiPaperAirplane } from "react-icons/hi2";
 
 export default function ChatForm() {
   const router = useRouter();
   const params = useParams<{ userId: string }>();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -25,7 +31,6 @@ export default function ChatForm() {
 
   const onSubmit = async (data: MessageSchema) => {
     const result = await createMessage(params.userId, data);
-
     if (result.status === "error") {
       handleFormServerErrors(result, setError);
     } else {
@@ -33,6 +38,10 @@ export default function ChatForm() {
       router.refresh();
     }
   };
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -45,10 +54,11 @@ export default function ChatForm() {
           isInvalid={!!errors.text}
           errorMessage={errors.text?.message}
         />
+
         <Button
           type="submit"
           isIconOnly
-          color="primary"
+          color="default"
           radius="full"
           isLoading={isSubmitting}
           isDisabled={!isValid || isSubmitting}

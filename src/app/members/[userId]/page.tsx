@@ -17,11 +17,9 @@ export default async function MemberDetailedPage({
 
   return (
     <>
-      <CardHeader className="text-2xl font-semibold text-default">
-        Profile
-      </CardHeader>
+      <div className="text-2xl font-semibold text-default">Profile</div>
       <Divider />
-      <CardBody>{member.description || "No description"}</CardBody>
+      <div>{member.description || "No description"}</div>
     </>
   );
 }

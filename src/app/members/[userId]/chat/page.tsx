@@ -1,11 +1,9 @@
-"use server";
-
-import CardInnerWrapper from "@/components/shared/CardInnerWrapper";
-import React from "react";
-import ChatForm from "./ChatForm";
 import getAuthUserId from "@/actions/authActions/getAuthUserId";
 import getMessageThread from "@/actions/messageActions/getMessageThread";
-import MessageBox from "@/components/shared/MessageBox";
+import CardInnerWrapper from "@/components/shared/CardInnerWrapper";
+import MessageList from "@/components/shared/MessageList";
+import createChatId from "@/utils/strings/createChatId";
+import ChatForm from "./ChatForm";
 
 export default async function ChatPage({
   params,
@@ -15,26 +13,20 @@ export default async function ChatPage({
   const { userId: userIdParam } = await params;
   const messages = await getMessageThread(userIdParam);
   const userId = await getAuthUserId();
-  const body = (
-    <div>
-      {messages.length === 0 ? (
-        "No messages to display"
-      ) : (
-        <div>
-          {messages.map((message) => (
-            <MessageBox
-              key={message.id}
-              message={message}
-              currentUserId={userId}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
+
+  const chatId = createChatId(userId, userIdParam);
+
   return (
-    <>
-      <CardInnerWrapper header="Chat" body={body} footer={<ChatForm />} />
-    </>
+    <CardInnerWrapper
+      header="Chat"
+      body={
+        <MessageList
+          initialMessages={messages}
+          currentUserId={userId}
+          chatId={chatId}
+        />
+      }
+      footer={<ChatForm />}
+    />
   );
 }

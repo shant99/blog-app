@@ -2,9 +2,10 @@
 
 import { prisma } from "@/lib/prisma";
 import getAuthUserId from "../authActions/getAuthUserId";
+import { messageSelect } from "./helpers";
 import mapMessageToMessageDTO from "@/utils/DTO/mapMessageToMessageDTO";
 
-export default async function getMessagesByContainer(container: string) {
+export async function getMessagesByContainer(container: string) {
   try {
     const userId = await getAuthUserId();
 
@@ -20,29 +21,8 @@ export default async function getMessagesByContainer(container: string) {
       orderBy: {
         created: "desc",
       },
-      select: {
-        id: true,
-        text: true,
-        created: true,
-        dateRead: true,
-        sender: {
-          select: {
-            userId: true,
-            name: true,
-            image: true,
-          },
-        },
-        recipient: {
-          select: {
-            userId: true,
-            name: true,
-            image: true,
-          },
-        },
-      },
+      select: messageSelect,
     });
-
-    console.log(messages, "ssss");
 
     return messages.map((message) => mapMessageToMessageDTO(message));
   } catch (error) {
