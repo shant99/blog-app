@@ -29,7 +29,7 @@ const ClientProvider = ({
       setUnreadCount(unreadMessageCount);
       isUnreadCountSet.current = true;
     }
-  }, [setUnreadCount, userId]);
+  }, [setUnreadCount, userId, unreadMessageCount]);
 
   usePresenceChannel();
   useNotificationChannel(userId);

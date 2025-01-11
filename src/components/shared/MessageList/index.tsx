@@ -31,7 +31,7 @@ export default function MessageList({
       updateUnreadCount(-initialMessages.readCount);
       setReadCount.current = true;
     }
-  }, [initialMessages.readCount, updateUnreadCount]);
+  }, [initialMessages, updateUnreadCount]);
 
   const handleNewMessage = useCallback(
     (message: MessageDto) => {
@@ -68,7 +68,7 @@ export default function MessageList({
       channel.unbind("message:new", handleNewMessage);
       channel.unbind("messages:read", handleReadMessages);
     };
-  }, [chatId]);
+  }, [chatId, handleNewMessage, handleReadMessages]);
 
   return (
     <div>
