@@ -7,13 +7,11 @@ if (!CLUSTER) {
   throw new Error("PUSHER_CLUSTER environment variable is not defined!");
 }
 
-declare global {
-  var pusherServerInstance: PusherServer | undefined;
-  var pusherClientInstance: PusherClient | undefined;
-}
+let pusherServerInstance: PusherServer | undefined;
+let pusherClientInstance: PusherClient | undefined;
 
-if (!global.pusherServerInstance) {
-  global.pusherServerInstance = new PusherServer({
+if (!pusherServerInstance) {
+  pusherServerInstance = new PusherServer({
     appId: process.env.PUSHER_APP_ID!,
     key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
     secret: process.env.PUSHER_SECRET!,
@@ -22,14 +20,14 @@ if (!global.pusherServerInstance) {
   });
 }
 
-if (!global.pusherClientInstance) {
+if (!pusherClientInstance) {
   if (!process.env.NEXT_PUBLIC_PUSHER_APP_KEY) {
     throw new Error(
       "NEXT_PUBLIC_PUSHER_APP_KEY environment variable is not defined!"
     );
   }
 
-  global.pusherClientInstance = new PusherClient(
+  pusherClientInstance = new PusherClient(
     process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
     {
       cluster: CLUSTER,
@@ -41,5 +39,5 @@ if (!global.pusherClientInstance) {
   );
 }
 
-export const pusherServer = global.pusherServerInstance;
-export const pusherClient = global.pusherClientInstance;
+export const pusherServer = pusherServerInstance;
+export const pusherClient = pusherClientInstance;

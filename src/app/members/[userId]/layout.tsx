@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { Card } from "@nextui-org/react";
 import { getMemberByUserId } from "@/actions/membersActions/getMemberByUserId";
 import MemberSidebar from "@/components/shared/MemberSidebar";
 
