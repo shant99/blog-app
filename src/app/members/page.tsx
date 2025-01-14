@@ -11,7 +11,7 @@ import { GetMemberParams } from "@/types";
 export default async function MembersPage({
   searchParams,
 }: {
-  searchParams: GetMemberParams;
+  searchParams: Promise<GetMemberParams>;
 }) {
   // const t = await getMessages();
   const searchQuery = await searchParams;
