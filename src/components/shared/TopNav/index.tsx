@@ -8,6 +8,7 @@ import BaseLinks from "./BaseLinks";
 import AuthLinks from "./AuthLinks";
 import { getUserInfoForNav } from "@/actions/userActions/getUserInfoForNav";
 import { auth } from "@/auth";
+import FiltersWrapper from "../Filters/FiltersWrapper";
 
 export default async function TopNav() {
   const session = await auth();
@@ -37,6 +38,7 @@ export default async function TopNav() {
           </NavbarContent>
         )}
       </Navbar>
+      <FiltersWrapper />
     </header>
   );
 }
