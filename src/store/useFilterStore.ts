@@ -4,7 +4,7 @@ import { devtools } from "zustand/middleware";
 
 type FilterState = {
   filters: UserFilters;
-  setFilters: (filterName: keyof FilterState["filters"], value: any) => void;
+  setFilters: (filterName: keyof FilterState["filters"], value: string) => void;
 };
 
 const useFilterStore = create<FilterState>()(

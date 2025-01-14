@@ -49,7 +49,7 @@ export const useMessages = (
     return () => {
       resetMessages();
     };
-  }, [initialMessages, set, nextCursor]);
+  }, [initialMessages, set, nextCursor, resetMessages]);
 
   const loadMore = useCallback(async () => {
     if (cursorRef.current) {
