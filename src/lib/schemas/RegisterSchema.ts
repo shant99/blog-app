@@ -25,7 +25,7 @@ export const profileSchema = z.object({
         return age >= 18;
       },
       {
-        message: "You must be at least 18 to use this app",
+        message: "You must be at least 18 to use this app!",
       }
     ),
 });
