@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { ProfileSchema, RegisterSchema } from "@/lib/schemas/RegisterSchema";
+import { RegisterSchema } from "@/lib/schemas/RegisterSchema";
 import bcrypt from "bcryptjs";
 
 export async function findUserByEmail(email: string) {

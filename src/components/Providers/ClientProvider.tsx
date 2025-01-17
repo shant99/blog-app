@@ -24,8 +24,6 @@ const ClientProvider = ({
     [updateUnreadCount]
   );
 
-  if (!userId) return <div>{children}</div>;
-
   useEffect(() => {
     if (!isUnreadCountSet.current && userId) {
       setUnreadCount(unreadMessageCount);
