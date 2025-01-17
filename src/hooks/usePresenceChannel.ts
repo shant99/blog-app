@@ -4,13 +4,12 @@ import { Channel, Members } from "pusher-js";
 import { pusherClient } from "@/lib/pusher";
 import usePresenceStore from "@/store/usePresenceStore";
 import { updateLastActive } from "@/actions/membersActions/updateLastActive";
+import { usePresence } from "motion/react";
 
 export const usePresenceChannel = (userId: string | null) => {
-  const { set, add, remove } = usePresenceStore((state) => ({
-    set: state.set,
-    add: state.add,
-    remove: state.remove,
-  }));
+  const set = usePresenceStore((state) => state.set);
+  const add = usePresenceStore((state) => state.add);
+  const remove = usePresenceStore((state) => state.remove);
   const channelRef = useRef<Channel | null>(null);
 
   const handleSetMembers = useCallback(

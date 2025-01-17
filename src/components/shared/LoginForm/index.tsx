@@ -11,8 +11,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { signInUser } from "@/actions/authActions/signInUser";
+import signInWithCred from "@/actions/authActions/signInWithCred";
+import { useTranslations } from "next-intl";
 
 export default function LoginForm() {
+  const t = useTranslations();
   const {
     register,
     handleSubmit,
@@ -25,7 +28,8 @@ export default function LoginForm() {
   const router = useRouter();
 
   const onSubmit = async (data: LoginSchema) => {
-    const result = await signInUser(data);
+    const result = await signInWithCred(data, t);
+    await signInUser(data);
     if (result.status === "success") {
       router.push("/members");
       router.refresh();

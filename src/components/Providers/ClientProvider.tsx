@@ -14,6 +14,8 @@ const ClientProvider = ({
   userId: string | null;
   unreadMessageCount: number;
 }) => {
+  if (!userId) return <div>{children}</div>;
+
   const isUnreadCountSet = useRef(false);
   const updateUnreadCount = useMessageStore((state) => state.updateUnreadCount);
 

@@ -1,6 +1,6 @@
 # About Blog-app
 
-![This is blog-app!](/public/images/blog.png "Blog-app !")
+![This is blog-app!](/public/images/blog.gif "Blog-app !")
 
 ## Getting Started
 
