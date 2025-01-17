@@ -4,7 +4,6 @@ import { Channel, Members } from "pusher-js";
 import { pusherClient } from "@/lib/pusher";
 import usePresenceStore from "@/store/usePresenceStore";
 import { updateLastActive } from "@/actions/membersActions/updateLastActive";
-import { usePresence } from "motion/react";
 
 export const usePresenceChannel = (userId: string | null) => {
   const set = usePresenceStore((state) => state.set);
@@ -48,14 +47,14 @@ export const usePresenceChannel = (userId: string | null) => {
 
       channelRef.current.bind(
         "pusher:member_added",
-        (member: Record<string, any>) => {
+        (member: Record<string, string>) => {
           handleAddMember(member.id);
         }
       );
 
       channelRef.current.bind(
         "pusher:member_removed",
-        (member: Record<string, any>) => {
+        (member: Record<string, string>) => {
           handleRemoveMember(member.id);
         }
       );

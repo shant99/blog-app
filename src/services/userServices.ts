@@ -8,7 +8,7 @@ export async function findUserByEmail(email: string) {
   });
 }
 
-export async function createUser(data: RegisterSchema & ProfileSchema) {
+export async function createUser(data: RegisterSchema) {
   const { name, email, password } = data;
 
   const hashedPassword = await bcrypt.hash(password, 10);

@@ -1,5 +1,5 @@
 import { registerSchema, RegisterSchema } from "@/lib/schemas/RegisterSchema";
-import { createUser, findUserByEmail } from "@/services/userServices";
+import { findUserByEmail } from "@/services/userServices";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const user = {}; // await createUser(validated.data);
+    const user = {}; //await createUser(validated.data);
 
     return NextResponse.json(
       { message: "User registered successfully", user },
