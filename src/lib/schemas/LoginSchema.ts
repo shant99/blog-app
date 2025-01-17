@@ -7,4 +7,4 @@ export const loginSchema = z.object({
   }),
 });
 
-export type TLoginSchema = z.infer<typeof loginSchema>;
+export type LoginSchema = z.infer<typeof loginSchema>;

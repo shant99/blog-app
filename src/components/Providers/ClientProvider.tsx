@@ -31,7 +31,7 @@ const ClientProvider = ({
     }
   }, [setUnreadCount, userId, unreadMessageCount]);
 
-  usePresenceChannel();
+  usePresenceChannel(userId);
   useNotificationChannel(userId);
   return <div>{children}</div>;
 };

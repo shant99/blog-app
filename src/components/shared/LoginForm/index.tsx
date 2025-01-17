@@ -4,57 +4,55 @@ import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
 import React from "react";
 import { GiPadlock } from "react-icons/gi";
 import { useForm } from "react-hook-form";
-import { loginSchema, TLoginSchema } from "@/lib/schemas/LoginSchema";
+import { LoginSchema, loginSchema } from "@/lib/schemas/LoginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import { toast } from "react-toastify";
-import signInWithCred from "@/actions/authActions/signInWithCred";
+
 import { useRouter } from "next/navigation";
-import "./styles.css";
+import { toast } from "react-toastify";
+import Link from "next/link";
+import signInWithCred from "@/actions/authActions/signInWithCred";
+import { useTranslations } from "next-intl";
 
 export default function LoginForm() {
   const t = useTranslations();
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
-    formState: { isValid, errors, isSubmitting },
-  } = useForm<TLoginSchema>({
+    formState: { isValid, errors },
+  } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     mode: "onTouched",
   });
 
-  const onSubmit = async (data: TLoginSchema) => {
-    const response = await signInWithCred(data, t);
+  const router = useRouter();
 
-    if (response.status === "error") {
-      toast.error(response.error);
-    }
-
-    if (response.status === "success") {
-      router.push("/welcome?action=login");
+  const onSubmit = async (data: LoginSchema) => {
+    const result = await signInWithCred(data, t);
+    if (result.status === "success") {
+      router.push("/members");
+      router.refresh();
+    } else {
+      toast.error(result.error as string);
     }
   };
 
   return (
-    <Card className="box-shadow-neon card">
-      <CardHeader className="card-header">
-        <div>
-          <div>
+    <Card className="w-3/5 mx-auto">
+      <CardHeader className="flex flex-col items-center justify-center">
+        <div className="flex flex-col gap-2 items-center text-default">
+          <div className="flex flex-row items-center gap-3">
             <GiPadlock size={30} />
-            <h1>{t("navLinks.login")}</h1>
+            <h1 className="text-3xl font-semibold">Login</h1>
           </div>
-          <p>{t("other.welcome_to_blog")}</p>
+          <p className="text-neutral-500">Welcome back to MatchMe!</p>
         </div>
       </CardHeader>
-
-      <CardBody className="card-body">
+      <CardBody>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
+          <div className="space-y-4">
             <Input
               defaultValue=""
-              label={t("form.email")}
+              label="Email"
               variant="bordered"
               {...register("email")}
               isInvalid={!!errors.email}
@@ -62,7 +60,7 @@ export default function LoginForm() {
             />
             <Input
               defaultValue=""
-              label={t("form.password")}
+              label="Password"
               variant="bordered"
               type="password"
               {...register("password")}
@@ -70,14 +68,16 @@ export default function LoginForm() {
               errorMessage={errors.password?.message as string}
             />
             <Button
-              className="w-1/3"
-              color="primary"
+              fullWidth
+              color="default"
               type="submit"
               isDisabled={!isValid}
-              isLoading={isSubmitting}
             >
-              {t("navLinks.login")}
+              Login
             </Button>
+            <div className="flex justify-center hover:underline text-sm">
+              <Link href="/forgot-password">Forgot password?</Link>
+            </div>
           </div>
         </form>
       </CardBody>

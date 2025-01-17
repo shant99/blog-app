@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import { RegisterSchema } from "@/lib/schemas/RegisterSchema";
 import bcrypt from "bcryptjs";
-import { TRegisterSchema } from "@/lib/schemas/RegisterSchema";
 
 export async function findUserByEmail(email: string) {
   return prisma.user.findUnique({
@@ -8,7 +8,7 @@ export async function findUserByEmail(email: string) {
   });
 }
 
-export async function createUser(data: TRegisterSchema) {
+export async function createUser(data: RegisterSchema) {
   const { name, email, password } = data;
 
   const hashedPassword = await bcrypt.hash(password, 10);

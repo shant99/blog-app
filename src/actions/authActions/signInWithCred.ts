@@ -1,10 +1,10 @@
-import { TLoginSchema } from "@/lib/schemas/LoginSchema";
+import { LoginSchema } from "@/lib/schemas/LoginSchema";
 import { signIn } from "next-auth/react";
 import { handleSignInErrors } from "@/utils/errors/handleSignInErrors";
 import { TranslationFunction } from "@/types/global";
 
 export default async function signInWithCred(
-  data: TLoginSchema,
+  data: LoginSchema,
   t: TranslationFunction
 ) {
   try {
