@@ -1,96 +1,127 @@
 "use client";
 
-import { TRegisterSchema, registerSchema } from "@/lib/schemas/RegisterSchema";
-import { Button, Input } from "@nextui-org/react";
-import registerWithCred from "@/actions/authActions/registerWithCred";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { GiPadlock } from "react-icons/gi";
-import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import "./styles.css";
+import {
+  profileSchema,
+  registerSchema,
+  RegisterSchema,
+} from "@/lib/schemas/RegisterSchema";
 
-function RegisterForm() {
-  const t = useTranslations();
-  const router = useRouter();
+import { Card, CardHeader, CardBody, Button } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { GiPadlock } from "react-icons/gi";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { handleFormServerErrors } from "@/utils/errors/handleFormServerErrors";
+import ProfileDetailsForm from "../ProfileDetailsForm";
+import UserDetailsForm from "../UserDetailsForm";
+import registerUser from "@/actions/authActions/registerUser";
+
+const stepSchemas = [registerSchema, profileSchema];
+
+export default function RegisterForm() {
+  const [activeStep, setActiveStep] = useState(0);
+  const currentValidationSchema = stepSchemas[activeStep];
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const registerFormMethods = useForm<RegisterSchema>({
+    resolver: zodResolver(currentValidationSchema),
+    mode: "onTouched",
+  });
 
   const {
-    register,
     handleSubmit,
+    getValues,
+    setError,
     formState: { errors, isValid, isSubmitting },
-  } = useForm<TRegisterSchema>({
-    resolver: zodResolver(registerSchema),
-    mode: "onTouched",
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-    },
-  });
-  const onSubmit = async (data: TRegisterSchema) => {
-    const response = await registerWithCred(data, t);
+  } = registerFormMethods;
 
-    if (response.status === "error") {
-      toast.error(response.error);
-    }
+  const router = useRouter();
 
-    if (response.status === "success") {
-      router.push("/welcome?action=register");
+  const onSubmit = async () => {
+    const result = await registerUser(getValues());
+    if (result.status === "success") {
+      router.push("/register/success");
+    } else {
+      handleFormServerErrors(result, setError);
+      console.log(result, getValues(), "---------");
     }
   };
 
+  const getStepContent = (step: number) => {
+    switch (step) {
+      case 0:
+        return <UserDetailsForm />;
+      case 1:
+        return <ProfileDetailsForm />;
+      default:
+        return "Unknown step";
+    }
+  };
+
+  const onBack = () => {
+    setActiveStep((prev) => prev - 1);
+  };
+
+  const onNext = async () => {
+    if (activeStep === stepSchemas.length - 1) {
+      await onSubmit();
+    } else {
+      setActiveStep((prev) => prev + 1);
+    }
+  };
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
-    <div className="box-shadow-neon card">
-      <div className="card-header">
-        <div>
-          <div>
+    <Card className="w-3/5 mx-auto">
+      <CardHeader className="flex flex-col items-center justify-center">
+        <div className="flex flex-col gap-2 items-center text-default">
+          <div className="flex flex-row items-center gap-3">
             <GiPadlock size={30} />
-            <h1>{t("navLinks.register")}</h1>
+            <h1 className="text-3xl font-semibold">Register</h1>
           </div>
-          <p>{t("other.welcome_to_blog")}</p>
+          <p className="text-neutral-500">Welcome to NextMatch</p>
         </div>
-      </div>
-      <div className="card-body">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-4">
-            <Input
-              label={t("form.name")}
-              variant="bordered"
-              {...register("name")}
-              isInvalid={!!errors.name}
-              errorMessage={errors.name?.message}
-            />
-            <Input
-              label={t("form.email")}
-              variant="bordered"
-              {...register("email")}
-              isInvalid={!!errors.email}
-              errorMessage={errors.email?.message}
-            />
-            <Input
-              label={t("form.password")}
-              variant="bordered"
-              type="password"
-              {...register("password")}
-              isInvalid={!!errors.password}
-              errorMessage={errors.password?.message}
-            />
-            <Button
-              isLoading={isSubmitting}
-              className="w-1/3"
-              color="primary"
-              type="submit"
-              isDisabled={!isValid}
-            >
-              {t("navLinks.register")}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+      </CardHeader>
+      <CardBody>
+        <FormProvider {...registerFormMethods}>
+          <form onSubmit={handleSubmit(onNext)}>
+            <div className="space-y-4">
+              {getStepContent(activeStep)}
+              {errors.root?.serverError && (
+                <p className="text-danger text-sm">
+                  {errors.root.serverError.message}
+                </p>
+              )}
+              <div className="flex flex-row items-center gap-6">
+                {activeStep !== 0 && (
+                  <Button onPress={onBack} fullWidth>
+                    Back
+                  </Button>
+                )}
+                <Button
+                  isLoading={isSubmitting}
+                  isDisabled={!isValid}
+                  fullWidth
+                  color="default"
+                  type="submit"
+                >
+                  {activeStep === stepSchemas.length - 1
+                    ? "Submit"
+                    : "Continue"}
+                </Button>
+              </div>
+            </div>
+          </form>
+        </FormProvider>
+      </CardBody>
+    </Card>
   );
 }
-
-export default RegisterForm;

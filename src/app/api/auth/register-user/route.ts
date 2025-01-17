@@ -1,10 +1,10 @@
-import { registerSchema, TRegisterSchema } from "@/lib/schemas/RegisterSchema";
+import { registerSchema, RegisterSchema } from "@/lib/schemas/RegisterSchema";
 import { createUser, findUserByEmail } from "@/services/userServices";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const body: TRegisterSchema = await req.json();
+    const body: RegisterSchema = await req.json();
     const validated = registerSchema.safeParse(body);
 
     if (!validated.success) {
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const user = await createUser(validated.data);
+    const user = {}; // await createUser(validated.data);
 
     return NextResponse.json(
       { message: "User registered successfully", user },

@@ -13,18 +13,22 @@ export default async function Providers({ children }: { children: ReactNode }) {
   const messages = await getMessages();
   const session = await auth();
   const userId = session?.user?.id || null;
-  const unreadMessageCount = await getUnreadMessageCount();
+  const unreadMessageCount = userId ? await getUnreadMessageCount() : 0;
 
   return (
     <NextIntlClientProvider messages={messages}>
       <NextUIProvider>
         <SessionProvider>
-          <ClientProvider
-            userId={userId}
-            unreadMessageCount={unreadMessageCount}
-          >
-            {children}
-          </ClientProvider>
+          {userId ? (
+            <ClientProvider
+              userId={userId}
+              unreadMessageCount={unreadMessageCount}
+            >
+              {children}
+            </ClientProvider>
+          ) : (
+            children
+          )}
         </SessionProvider>
       </NextUIProvider>
     </NextIntlClientProvider>

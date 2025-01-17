@@ -1,12 +1,11 @@
 "use client";
 
-import { TRegisterSchema } from "@/lib/schemas/RegisterSchema";
 import { TranslationFunction } from "@/types/global";
 import { handleSignInErrors } from "@/utils/errors/handleSignInErrors";
 import { signIn } from "next-auth/react";
 
 export default async function registerWithCred(
-  data: TRegisterSchema,
+  data: { email: string; password: string },
   t: TranslationFunction
 ) {
   try {

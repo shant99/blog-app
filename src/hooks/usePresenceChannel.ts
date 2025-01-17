@@ -1,58 +1,62 @@
-"use client";
-
 import { useCallback, useEffect, useRef } from "react";
+
 import { Channel, Members } from "pusher-js";
 import { pusherClient } from "@/lib/pusher";
 import usePresenceStore from "@/store/usePresenceStore";
+import { updateLastActive } from "@/actions/membersActions/updateLastActive";
 
-export const usePresenceChannel = () => {
-  const setMembers = usePresenceStore((state) => state.set);
-  const addMember = usePresenceStore((state) => state.add);
-  const removeMember = usePresenceStore((state) => state.remove);
+export const usePresenceChannel = (userId: string | null) => {
+  const { set, add, remove } = usePresenceStore((state) => ({
+    set: state.set,
+    add: state.add,
+    remove: state.remove,
+  }));
   const channelRef = useRef<Channel | null>(null);
 
   const handleSetMembers = useCallback(
     (memberIds: string[]) => {
-      setMembers(memberIds);
+      set(memberIds);
     },
-    [setMembers]
+    [set]
   );
 
   const handleAddMember = useCallback(
     (memberId: string) => {
-      addMember(memberId);
+      add(memberId);
     },
-    [addMember]
+    [add]
   );
 
   const handleRemoveMember = useCallback(
     (memberId: string) => {
-      removeMember(memberId);
+      remove(memberId);
     },
-    [removeMember]
+    [remove]
   );
 
   useEffect(() => {
+    if (!userId) return;
     if (!channelRef.current) {
-      channelRef.current = pusherClient.subscribe("presence-blog");
+      channelRef.current = pusherClient.subscribe("presence-match-me");
 
       channelRef.current.bind(
         "pusher:subscription_succeeded",
-        (members: Members) => {
+        async (members: Members) => {
           handleSetMembers(Object.keys(members.members));
+          await updateLastActive();
         }
       );
 
       channelRef.current.bind(
         "pusher:member_added",
-        (member: Record<string, string>) => {
+        (member: Record<string, any>) => {
           handleAddMember(member.id);
         }
       );
 
       channelRef.current.bind(
         "pusher:member_removed",
-        (member: Record<string, string>) => {
+        (member: Record<string, any>) => {
           handleRemoveMember(member.id);
         }
       );
@@ -69,5 +73,5 @@ export const usePresenceChannel = () => {
         channelRef.current.unbind("pusher:member_removed", handleRemoveMember);
       }
     };
-  }, [handleAddMember, handleRemoveMember, handleSetMembers]);
+  }, [handleAddMember, handleRemoveMember, handleSetMembers, userId]);
 };
