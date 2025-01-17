@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { signInUser } from "@/actions/authActions/signInUser";
 import signInWithCred from "@/actions/authActions/signInWithCred";
 import { useTranslations } from "next-intl";
 
@@ -29,7 +28,6 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginSchema) => {
     const result = await signInWithCred(data, t);
-    await signInUser(data);
     if (result.status === "success") {
       router.push("/members");
       router.refresh();

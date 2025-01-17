@@ -24,7 +24,10 @@ export default {
 
           if (!user) return null;
 
-          const comparedPassword = await compare(password, user.passwordHash);
+          const comparedPassword = await compare(
+            password,
+            user.passwordHash || ""
+          );
 
           if (comparedPassword) {
             return user;
